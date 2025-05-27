@@ -7,8 +7,8 @@ import json
 import os
 
 # --- Load Environment Variables ---
-users = json.loads(os.environ.get("USERS_JSON", "{}"))
-creds_dict = json.loads(os.environ.get("GOOGLE_SERVICE_ACCOUNT", "{}"))
+users = json.loads(os.environ.get("users_json", "{}"))
+creds_dict = json.loads(os.environ.get("google_service_credentials_json", "{}"))
 
 # Streamlit page config
 st.set_page_config(page_title="Tea Estate Daily Report", layout="wide")

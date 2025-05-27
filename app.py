@@ -3,11 +3,15 @@ import pandas as pd
 from datetime import date
 import gspread
 from google.oauth2.service_account import Credentials
+import json
+import os
+
+# --- Load Environment Variables ---
+users = json.loads(os.environ.get("USERS_JSON", "{}"))
+creds_dict = json.loads(os.environ.get("GOOGLE_SERVICE_ACCOUNT", "{}"))
 
 # Streamlit page config
 st.set_page_config(page_title="Tea Estate Daily Report", layout="wide")
-
-users = st.secrets["users"]
 
 workers = [
     "M1 - Kokila", "M2 - Sunil", "M3 - Nimal - Podi", "M4 - Nimal - Loku", "M6 - Sarath",
@@ -32,7 +36,6 @@ def write_to_gsheet(df, sheet_name, driver_attended, driver_payment):
         df = df.fillna("")
 
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds_dict = st.secrets["google_service_account"]
         creds = Credentials.from_service_account_info(dict(creds_dict), scopes=scope)
         client = gspread.authorize(creds)
 
@@ -55,7 +58,6 @@ def write_to_gsheet(df, sheet_name, driver_attended, driver_payment):
         return True, f"✅ Data successfully written to sheet '{sheet_name}'."
     except Exception as e:
         return False, f"❌ Error writing to Google Sheets: {e}"
-
 
 # --- Session State Initialization ---
 if "authenticated" not in st.session_state:
@@ -96,14 +98,12 @@ def login_page():
         else:
             st.error("Invalid credentials. Please try again.")
 
-
 # --- LOGOUT ---
 def logout():
     st.session_state.authenticated = False
     st.session_state.username = ""
     st.session_state.page = "login"
     st.rerun()
-
 
 # --- NAVIGATION ---
 def nav_buttons():
@@ -119,7 +119,6 @@ def nav_buttons():
     with col3:
         if st.button("Logout"):
             logout()
-
 
 # --- MAIN CONTENT ---
 if not st.session_state.authenticated:
@@ -212,7 +211,6 @@ else:
         if st.button("💾 Save Today's Data"):
             st.session_state.saved = True
             st.success("✅ Data saved successfully. Go to 'Data Verify' tab to review.")
-
 
     # --- Data Verify Page ---
     elif page == "Data Verify":

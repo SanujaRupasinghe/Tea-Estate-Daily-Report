@@ -2,3 +2,6 @@ venv/
 credentials.json
 __pycache__/
 .streamlit/secrets.toml
+env
+GOOGLE_SERVICE_ACCOUNT.json
+USERS_JSON.json

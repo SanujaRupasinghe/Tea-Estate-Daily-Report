@@ -20,7 +20,7 @@ work_periods = ["Full Day", "Half Day", "Quarter Day"]
 work_types = ["Tea Plucking", "Fertilizing", "Cleaning"]
 
 # --- Google Sheets Write Function ---
-def write_to_gsheet(df, sheet_name, driver_attended, driver_payment):
+def write_to_gsheet(df, sheet_name, transport_attended, transport_payment, tea_collect_attended, tea_collect_payment):
     try:
         if "Date" in df.columns:
             df["Date"] = df["Date"].astype(str)
@@ -48,9 +48,12 @@ def write_to_gsheet(df, sheet_name, driver_attended, driver_payment):
             sheet.append_row(row)
 
         sheet.append_row([])
-        sheet.append_row(["DRIVER"])
-        sheet.append_row(["Driver Arrived", "TRUE" if driver_attended else "FALSE"])
-        sheet.append_row(["Driver Paid", str(driver_payment)])
+        sheet.append_row(["transport"])
+        sheet.append_row(["transport Arrived", "TRUE" if transport_attended else "FALSE"])
+        sheet.append_row(["transport Paid", str(transport_payment)])
+        sheet.append_row(["tea collect"])
+        sheet.append_row(["tea collect Arrived", "TRUE" if tea_collect_attended else "FALSE"])
+        sheet.append_row(["tea collect Received", str(tea_collect_payment)])
 
         return True, f"✅ Data successfully written to sheet '{sheet_name}'."
     except Exception as e:
@@ -202,11 +205,18 @@ else:
                         st.session_state.all_worker_data[i][field] = None
 
         st.markdown("---")
-        st.write("### 🚚 Driver Attendance")
-        driver_arrived = st.checkbox("Did the Driver come to work today?", key="driver_arrived")
-        st.session_state.driver_attended = driver_arrived
-        driver_pay = st.number_input("Driver Payment (Rs)", min_value=0, step=1, format="%d", key="driver_pay")
-        st.session_state.driver_payment = driver_pay
+        st.write("### 🚚 transport Attendance")
+        transport_arrived = st.checkbox("Did the transport come to work today?", key="transport_arrived")
+        st.session_state.transport_attended = transport_arrived
+        transport_pay = st.number_input("transport Payment (Rs)", min_value=0, step=1, format="%d", key="transport_pay")
+        st.session_state.transport_payment = transport_pay
+
+        st.markdown("---")
+        st.write("### 🚛 tea collect Attendance")
+        tea_collect_arrived = st.checkbox("Did the tea collect come to work today?", key="tea_collect_arrived")
+        st.session_state.tea_collect_attended = tea_collect_arrived
+        tea_collect_pay = st.number_input("tea collect Payment (Rs)", min_value=0, step=1, format="%d", key="tea_collect_pay")
+        st.session_state.tea_collect_payment = tea_collect_pay
 
         st.markdown("---")
         if st.button("💾 Save Today's Data"):
@@ -224,10 +234,15 @@ else:
             st.write("📊 Current data from this session:")
             st.dataframe(df, use_container_width=True)
 
-            st.markdown("### 🚛 Driver Attendance")
-            driver_status = st.session_state.get("driver_attended", None)
-            st.write("Driver:", "✅ Arrived" if driver_status else "❌ Not Arrived")
-            st.write(f"Driver Payment: Rs {st.session_state.get('driver_payment', 0)}")
+            st.markdown("### 🚛 transport Attendance")
+            transport_status = st.session_state.get("transport_attended", None)
+            st.write("transport:", "✅ Arrived" if transport_status else "❌ Not Arrived")
+            st.write(f"transport Payment: Rs {st.session_state.get('transport_payment', 0)}")
+
+            st.markdown("### 🚚 tea collect Attendance")
+            tea_collect_status = st.session_state.get("tea_collect_attended", None)
+            st.write("tea collect:", "✅ Arrived" if tea_collect_status else "❌ Not Arrived")
+            st.write(f"tea collect Payment: Rs {st.session_state.get('tea_collect_payment', 0)}")
 
             if st.button("✅ Final Submit"):
                 with st.spinner("Uploading to Google Sheets..."):
@@ -235,8 +250,10 @@ else:
                     success, msg = write_to_gsheet(
                         df,
                         sheet_name=sheet_name,
-                        driver_attended=st.session_state.driver_attended,
-                        driver_payment=st.session_state.driver_payment,
+                        transport_attended=st.session_state.transport_attended,
+                        transport_payment=st.session_state.transport_payment,
+                        tea_collect_attended=st.session_state.tea_collect_attended,
+                        tea_collect_payment=st.session_state.tea_collect_payment,
                     )
                     if success:
                         st.success(msg)

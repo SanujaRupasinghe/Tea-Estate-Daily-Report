@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import date
-from funcs import get_weather_for_period, write_to_gsheet, read_from_gsheet
+from funcs import get_weather, write_to_gsheet, read_from_gsheet
 
 # Streamlit page config
 st.set_page_config(page_title="Tea Estate Daily Report", layout="wide")
@@ -29,11 +29,12 @@ if "all_worker_data" not in st.session_state:
         {
             "Worker Name": worker,
             "Arrived": False,
-            "Section": None,
+            "Sections": None,
             "Work Period": None,
             "Work Type": None,
             "Amount (kg)": None,
             "Advanced Payment": 0,
+            "Num Tasks": 0, 
         }
         for worker in workers
     ]
@@ -48,10 +49,8 @@ if "tea_collect_arrived_state" not in st.session_state:
 if "tea_collect_payment_state" not in st.session_state:
     st.session_state.tea_collect_payment_state = 0
 
-if "weather_period_1" not in st.session_state:
-    st.session_state.weather_period_1 = [None, None]
-if "weather_period_2" not in st.session_state:
-    st.session_state.weather_period_2 = [None, None]
+if "weather" not in st.session_state:
+    st.session_state.weather = [None, None, None, None, None, None, None]
 
 if "additional_notes" not in st.session_state:
     st.session_state.additional_notes = ""
@@ -124,24 +123,15 @@ else:
         st.session_state.day = day
 
         # Get weather for the whole day
-        temp_weather_period_1, weather_word_weather_period_1 = get_weather_for_period(day, 6, 18)
-        temp_weather_period_2, weather_word_weather_period_2 = get_weather_for_period(day, 7, 14)
-        st.session_state.weather_period_1 = [temp_weather_period_1, weather_word_weather_period_1]
-        st.session_state.weather_period_2 = [temp_weather_period_2, weather_word_weather_period_2]
+        w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24 = get_weather(day, 6, 18)
+        st.session_state.weather = [w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24]
 
-        col1, col2 = st.columns(2)
-        with col1:
-            st.subheader("🌦️ 6.00am to 6.00pm weather")
-            if temp_weather_period_1 is not None:
-                st.info(f"**Weather:** {weather_word_weather_period_1} | **Avg Temp:** {temp_weather_period_1}°C")
-            else:
-                st.warning(weather_word_weather_period_1)
-        with col2:
-            st.subheader("🌤️ 6.00am - 2.00pm Weather")
-            if temp_weather_period_2 is not None:
-                st.info(f"**Weather:** {weather_word_weather_period_2} | **Avg Temp:** {temp_weather_period_2}°C")
-            else:
-                st.warning(weather_word_weather_period_2)
+        st.subheader(f"🌦️ {w_start}.am to {w_end}.pm weather")
+        if w_temp_range is not None:       
+            st.info(f"**Weather:** {w_word_range} | **Avg Temp:** {w_temp_range}°C | **Avg Humidity:** {w_humidi_range}%")
+        else:
+            st.warning(w_word_range)
+
 
         st.markdown("---")
         # Add New Worker
@@ -158,11 +148,12 @@ else:
                         new_worker_entry = {
                             "Worker Name": new_worker_name,
                             "Arrived": False,
-                            "Section": None,
+                            "Sections": None,
                             "Work Period": None,
                             "Work Type": None,
                             "Amount (kg)": None,
                             "Advanced Payment": 0,
+                            "Num Tasks": 0,
                         }
                         st.session_state.all_worker_data.append(new_worker_entry)
                         st.success(f"Worker '{new_worker_name}' added successfully!")
@@ -171,33 +162,89 @@ else:
         for i, w_data in enumerate(st.session_state.all_worker_data):
             worker = w_data["Worker Name"]
             with st.expander(f"👷 {worker}"):
-                arrived = st.checkbox("Worker Arrived?", key=f"arrived_{worker}", value=w_data["Arrived"])
+                arrived = st.checkbox("Worker Arrived?", key=f"arrived_{worker}", value=w_data.get("Arrived", False))
                 st.session_state.all_worker_data[i]["Arrived"] = arrived
 
                 if arrived:
-                    section = st.selectbox("Section", sections, index=sections.index(w_data["Section"]) if w_data["Section"] in sections else 0, key=f"section_{worker}")
-                    work_period = st.selectbox("Work Period", work_periods, index=work_periods.index(w_data["Work Period"]) if w_data["Work Period"] in work_periods else 0, key=f"period_{worker}")
-                    work_type = st.selectbox("Work Type", work_types, index=work_types.index(w_data["Work Type"]) if w_data["Work Type"] in work_types else 0, key=f"type_{worker}")
-
-                    st.session_state.all_worker_data[i]["Section"] = section
+                    work_period = st.selectbox(
+                        "Work Period",
+                        work_periods,
+                        index=work_periods.index(w_data.get("Work Period", work_periods[0])) if w_data.get("Work Period") in work_periods else 0,
+                        key=f"period_{worker}"
+                    )
                     st.session_state.all_worker_data[i]["Work Period"] = work_period
-                    st.session_state.all_worker_data[i]["Work Type"] = work_type
 
-                    if work_type == "Tea_Plucking":
-                        amount = st.number_input("Tea (kg)", min_value=0, step=1, format="%d", key=f"amount_{worker}_tea", value=w_data["Amount (kg)"] or 0)
-                    elif work_type == "Fertilizing":
-                        amount = st.number_input("Fertilizer (kg)", min_value=0, step=1, format="%d", key=f"amount_{worker}_fert", value=w_data["Amount (kg)"] or 0)
-                    else:
-                        st.info("No quantity needed for Weeding or Tea_Pruning.")
-                        amount = 0
-
-                    st.session_state.all_worker_data[i]["Amount (kg)"] = amount
-
-                    adv_payment = st.number_input("Advanced Payment (Rs)", min_value=0, step=1, format="%d", key=f"adv_payment_{worker}", value=w_data.get("Advanced Payment", 0))
+                    adv_payment = st.number_input(
+                        "Advanced Payment (Rs)",
+                        min_value=0,
+                        step=1,
+                        format="%d",
+                        key=f"adv_payment_{worker}",
+                        value=w_data.get("Advanced Payment", 0)
+                    )
                     st.session_state.all_worker_data[i]["Advanced Payment"] = adv_payment
+
+                    num_tasks = st.number_input("Number of Tasks", min_value=0, max_value=3, value=w_data.get("Num Tasks", 1), key=f"num_tasks_{worker}")
+                    st.session_state.all_worker_data[i]["Num Tasks"] = num_tasks
+                   
+                    # Default values if not present
+                    sections_list = w_data.get("Sections", "").split(", ") if w_data.get("Sections") else []
+                    work_types_list = w_data.get("Work Type", "").split(", ") if w_data.get("Work Type") else []
+                    amount_list = w_data.get("Amount (kg)", "").split(", ") if w_data.get("Amount (kg)") else []
+
+                    sections_result = []
+                    work_types_result = []
+                    amounts_result = []
+
+                    if num_tasks > 0:
+                        cols = st.columns(num_tasks)
+                        for task_id in range(num_tasks):
+                            with cols[task_id]:
+                                st.markdown(f"**Task {task_id + 1}**")
+
+                                section_default = sections_list[task_id] if task_id < len(sections_list) else sections[0]
+                                section = st.selectbox(
+                                    f"Section {task_id + 1}",
+                                    sections,
+                                    index=sections.index(section_default) if section_default in sections else 0,
+                                    key=f"section_{worker}_{task_id}"
+                                )
+
+                                work_type_default = work_types_list[task_id] if task_id < len(work_types_list) else work_types[0]
+                                work_type = st.selectbox(
+                                    f"Work Type {task_id + 1}",
+                                    work_types,
+                                    index=work_types.index(work_type_default) if work_type_default in work_types else 0,
+                                    key=f"type_{worker}_{task_id}"
+                                )
+
+                                if work_type == "Tea_Plucking":
+                                    default_amt = int(amount_list[task_id]) if task_id < len(amount_list) else 0
+                                    amount = st.number_input(f"Tea (kg)", min_value=0, step=1, format="%d", value=default_amt, key=f"amount_{worker}_tea_{task_id}")
+                                elif work_type == "Fertilizing":
+                                    default_amt = int(amount_list[task_id]) if task_id < len(amount_list) else 0
+                                    amount = st.number_input(f"Fertilizer (kg)", min_value=0, step=1, format="%d", value=default_amt, key=f"amount_{worker}_fert_{task_id}")
+                                else:
+                                    st.info("No quantity needed for Weeding or Tea_Pruning.")
+                                    amount = 0
+
+                                sections_result.append(section)
+                                work_types_result.append(work_type)
+                                amounts_result.append(str(amount))
+
+                    # Save updated flattened format
+                    st.session_state.all_worker_data[i]["Sections"] = ", ".join(sections_result)
+                    st.session_state.all_worker_data[i]["Work Type"] = ", ".join(work_types_result)
+                    st.session_state.all_worker_data[i]["Amount (kg)"] = ", ".join(amounts_result)
+
                 else:
-                    for field in ["Section", "Work Period", "Work Type", "Amount (kg)"]:
-                        st.session_state.all_worker_data[i][field] = None
+                    st.session_state.all_worker_data[i]["Work Period"] = ""
+                    st.session_state.all_worker_data[i]["Advanced Payment"] = 0
+                    st.session_state.all_worker_data[i]["Sections"] = ""
+                    st.session_state.all_worker_data[i]["Work Type"] = ""
+                    st.session_state.all_worker_data[i]["Amount (kg)"] = ""
+                    st.session_state.all_worker_data[i]["Num Tasks"] = 0
+
 
         st.markdown("---")
         st.write("### 🚚 transport Attendance")
@@ -245,22 +292,14 @@ else:
         if st.session_state.saved:
             st.markdown(f"### 📅 Date of Work: **{st.session_state.day}**")
 
-            col1, col2 = st.columns(2)
             st.markdown("### 🌤️ Weather Information")
-            with col1:
-                st.write("🌦️ Whole Day Weather")
-                temp_weather_period_1, weather_word_weather_period_1 = st.session_state.weather_period_1
-                if temp_weather_period_1 is not None:
-                    st.info(f"**Weather:** {weather_word_weather_period_1} | **Avg Temp:** {temp_weather_period_1}°C")
-                else:
-                    st.warning(weather_word_weather_period_1)
-            with col2:
-                st.write("🌤️ 7.30am - 1.30pm Weather")
-                temp_weather_period_2, weather_word_weather_period_2 = st.session_state.weather_period_2
-                if temp_weather_period_2 is not None:
-                    st.info(f"**Weather:** {weather_word_weather_period_2} | **Avg Temp:** {temp_weather_period_2}°C")
-                else:
-                    st.warning(weather_word_weather_period_2)
+            st.write("🌦️ Whole Day Weather")
+            w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24 = st.session_state.weather
+            if w_temp_range is not None:
+                st.info(f"**Weather:** {w_word_range} | **Avg Temp:** {w_temp_range}°C | **Avg Humidity:** {w_humidi_range}%")
+            else:
+                st.warning(w_word_range)
+            
 
             df = pd.DataFrame(st.session_state.all_worker_data)
             st.write("📊 Current data from this session:")
@@ -299,8 +338,7 @@ else:
                         transport_payment=st.session_state.transport_payment_state,
                         tea_collect_attended=st.session_state.tea_collect_arrived_state,
                         tea_collect_payment=st.session_state.tea_collect_payment_state,
-                        weather_period_1=st.session_state.weather_period_1,
-                        weather_period_2=st.session_state.weather_period_2,
+                        weather=st.session_state.weather,
                         additional_notes=st.session_state.additional_notes
                     )
                     if success:
@@ -320,4 +358,4 @@ else:
             start_date = st.date_input("Start Date", value=date.today())
         with col2:
             end_date = st.date_input("End Date", value=date.today())
-            
+

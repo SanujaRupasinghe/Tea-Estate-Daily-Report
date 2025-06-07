@@ -15,7 +15,7 @@ period_unit_map = {
     "7.30-4.30": 3
 }
 
-# Function to calculate payment
+# --- Payment Calculation Function ---
 def calculate_payment(row):
     period = row["Work Period"]
     work_type = row["Work Type"]
@@ -31,17 +31,18 @@ def calculate_payment(row):
         return base_rate * units
     else:
         return 0  # or some default if needed
-    
+
+# --- Weather Data Fetch Function ---
 @st.cache_data(show_spinner=False)
-def get_weather_for_period(target_date, start_hour, end_hour):
+def get_weather(target_date, start_hour, end_hour):
     latitude, longitude = 7.095024817437363, 80.36483435225661
     date_str = target_date.strftime("%Y-%m-%d")
     url = (
-    f"https://api.open-meteo.com/v1/forecast?"
-    f"latitude={latitude}&longitude={longitude}"
-    f"&start_date={date_str}&end_date={date_str}"
-    f"&hourly=temperature_2m,weathercode"
-    f"&timezone=Asia%2FColombo"
+        f"https://api.open-meteo.com/v1/forecast?"
+        f"latitude={latitude}&longitude={longitude}"
+        f"&start_date={date_str}&end_date={date_str}"
+        f"&hourly=temperature_2m,weathercode,relative_humidity_2m"
+        f"&timezone=Asia%2FColombo"
     )
     try:
         resp = requests.get(url, timeout=10)
@@ -49,18 +50,28 @@ def get_weather_for_period(target_date, start_hour, end_hour):
         data = resp.json()
         temps = data["hourly"]["temperature_2m"]
         codes = data["hourly"]["weathercode"]
+        humidity = data["hourly"]["relative_humidity_2m"]
         hours = data["hourly"]["time"]
-        # Extract hour from ISO time string
+
+        # 24 values for full day
+        full_day_temps = temps[:24]
+        full_day_humidity = humidity[:24]
+
+        # Filter for given time range
         hour_indices = [
             i for i, t in enumerate(hours)
             if start_hour <= int(t.split("T")[1][:2]) < end_hour
         ]
         if not hour_indices:
-            return None, "Weather data unavailable for period"
+            return None, "Weather data unavailable for period", None, [], []
+
         period_temps = [temps[i] for i in hour_indices]
         period_codes = [codes[i] for i in hour_indices]
+        period_humidity = [humidity[i] for i in hour_indices]
         avg_temp = sum(period_temps) / len(period_temps)
+        avg_humidity = sum(period_humidity) / len(period_humidity)
         code = Counter(period_codes).most_common(1)[0][0]
+
         weather_map = {
             0: "Sunny", 1: "Mainly clear", 2: "Partly cloudy", 3: "Cloudy",
             45: "Foggy", 48: "Depositing rime fog", 51: "Light drizzle",
@@ -73,13 +84,15 @@ def get_weather_for_period(target_date, start_hour, end_hour):
             86: "Heavy snow showers", 95: "Thunderstorm",
             96: "Thunderstorm with hail", 99: "Thunderstorm with heavy hail"
         }
+
         weather_word = weather_map.get(code, "Unknown")
-        return round(avg_temp, 1), weather_word
+        return start_hour, end_hour, weather_word, round(avg_temp, 1), round(avg_humidity, 1), full_day_temps, full_day_humidity
+
     except Exception as e:
-        return None, f"Weather data unavailable: {e}"
+        return None, f"Weather data unavailable: {e}", None, [], []
         
 # --- Google Sheets Write Function ---
-def write_to_gsheet(df, sheet_name, transport_login, transport_logout, transport_payment, tea_collect_attended, tea_collect_payment, weather_period_1, weather_period_2, additional_notes=""):
+def write_to_gsheet(df, sheet_name, transport_login, transport_logout, transport_payment, tea_collect_attended, tea_collect_payment, weather, additional_notes=""):
     try:
         if "Work Period" in df.columns:
             df["Payment"] = df.apply(calculate_payment, axis=1)
@@ -114,8 +127,17 @@ def write_to_gsheet(df, sheet_name, transport_login, transport_logout, transport
         sheet.append_row(["tea collect Received", str(tea_collect_payment)])
 
         sheet.append_row(["==== Weather ===="])
-        sheet.append_row(["6.00am - 6.00pm", f"{weather_period_1[0]}°C", weather_period_1[1]])
-        sheet.append_row(["6.00am - 2.00pm", f"{weather_period_2[0]}°C", weather_period_2[1]])
+        # First row: period, weather word, avg temp, avg humidity
+        sheet.append_row([
+            f"{weather[0]}:00 - {weather[1]}:00",
+            weather[2],  # weather word
+            weather[3],  # avg temp
+            weather[4]   # avg humidity
+        ])
+        # Second row: 24-hour temperature values
+        sheet.append_row(["Temp 24hr"] + list(weather[5]))
+        # Third row: 24-hour humidity values
+        sheet.append_row(["Humidity 24hr"] + list(weather[6]))
 
         sheet.append_row(["==== Additional Notes ===="])
         if additional_notes:

@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 from datetime import date
-from funcs import get_weather, write_to_gsheet, read_from_gsheet
+import json
+from funcs import get_weather, write_to_gsheet, read_from_gsheet, read_info_from_gsheet
+from analysis import get_missing_dates, get_weather_date, get_worker_progress, get_section_progress
 
 # Streamlit page config
 st.set_page_config(page_title="Tea Estate Daily Report", layout="wide")
@@ -29,12 +31,12 @@ if "all_worker_data" not in st.session_state:
         {
             "Worker Name": worker,
             "Arrived": False,
-            "Sections": None,
+            "Num Tasks": 0, 
             "Work Period": None,
+            "Sections": None,
             "Work Type": None,
             "Amount (kg)": None,
             "Advanced Payment": 0,
-            "Num Tasks": 0, 
         }
         for worker in workers
     ]
@@ -59,6 +61,9 @@ if "saved" not in st.session_state:
     st.session_state.saved = False
 if "page" not in st.session_state:
     st.session_state.page = "login"
+
+if "day_state" not in st.session_state:
+    st.session_state.day_state = date.today()
 
 # --- LOGIN PAGE ---
 def login_page():
@@ -87,7 +92,7 @@ def logout():
 
 # --- NAVIGATION ---
 def nav_buttons():
-    col1, col2, col3, col4 = st.columns([1,1,1,1])
+    col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
     with col1:
         if st.button("Data Entry"):
             st.session_state.page = "Data Entry"
@@ -101,6 +106,10 @@ def nav_buttons():
             st.session_state.page = "Analysis"
             st.rerun()
     with col4:
+        if st.button("Map"):
+            st.session_state.page = "Map"
+            st.rerun()
+    with col5:
         if st.button("Logout"):
             logout()
 
@@ -119,11 +128,16 @@ else:
         st.markdown("---")
 
         st.write("### 📅 Select Date")
-        day = st.date_input("", value=date.today())
-        st.session_state.day = day
+        st.session_state.day_state = st.date_input(
+            key="day",
+            value=st.session_state.day_state,
+            min_value=date(2023, 1, 1),
+            max_value=date.today(),
+            label=" ",
+        )
 
         # Get weather for the whole day
-        w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24 = get_weather(day, 6, 18)
+        w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24 = get_weather(st.session_state.day_state, 6, 18)
         st.session_state.weather = [w_start, w_end, w_word_range, w_temp_range, w_humidi_range, w_temp_24, w_humidi_24]
 
         st.subheader(f"🌦️ {w_start}.am to {w_end}.pm weather")
@@ -148,12 +162,12 @@ else:
                         new_worker_entry = {
                             "Worker Name": new_worker_name,
                             "Arrived": False,
-                            "Sections": None,
+                            "Num Tasks": 0, 
                             "Work Period": None,
+                            "Sections": None,
                             "Work Type": None,
                             "Amount (kg)": None,
                             "Advanced Payment": 0,
-                            "Num Tasks": 0,
                         }
                         st.session_state.all_worker_data.append(new_worker_entry)
                         st.success(f"Worker '{new_worker_name}' added successfully!")
@@ -290,7 +304,7 @@ else:
         st.title("🌿 Tea Estate Daily Report - Data Verify")
         st.markdown("---")
         if st.session_state.saved:
-            st.markdown(f"### 📅 Date of Work: **{st.session_state.day}**")
+            st.markdown(f"### 📅 Date of Work: **{st.session_state.day_state}**")
 
             st.markdown("### 🌤️ Weather Information")
             st.write("🌦️ Whole Day Weather")
@@ -329,7 +343,7 @@ else:
             st.markdown("---")
             if st.button("✅ Final Submit"):
                 with st.spinner("Uploading to Google Sheets..."):
-                    sheet_name = st.session_state.day.strftime("%Y-%m-%d")
+                    sheet_name = st.session_state.day_state.strftime("%Y-%m-%d")
                     success, msg = write_to_gsheet(
                         df=df,
                         sheet_name=sheet_name,
@@ -355,7 +369,178 @@ else:
         st.write("### 📅 Select Date Range for Analysis")
         col1, col2 = st.columns(2)
         with col1:
-            start_date = st.date_input("Start Date", value=date.today())
+            start_date = st.date_input("Start Date", value=date.today() - pd.Timedelta(days=10))
         with col2:
             end_date = st.date_input("End Date", value=date.today())
+        data = read_from_gsheet(start_date, end_date)
+
+        st.write(data)
+
+        st.markdown("---")
+        
+        missing_dates = get_missing_dates(data, start_date, end_date)
+        temp_dict, hum_dict = get_weather_date(data)
+        worker_progress = get_worker_progress(data, workers)
+        section_progress = get_section_progress(data, sections)
+
+        if missing_dates:
+            st.warning("⚠️ The following dates have no data available: " + ", ".join(missing_dates))
+        else:
+            st.success("✅ All dates have data available.")
+
+        st.markdown("---")
+
+        # Prepare data for plotting
+        dates = list(temp_dict.keys())
+        temp_values = list(temp_dict.values())
+        hum_values = list(hum_dict.values())
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Average Temperature (°C)")
+            st.bar_chart(pd.DataFrame({"Temperature": temp_values}, index=dates))
+        with col2:
+            st.subheader("Average Humidity (%)")
+            st.bar_chart(pd.DataFrame({"Humidity": hum_values}, index=dates))
+        st.markdown("---")
+
+        st.write("### 📊 Worker Progress")
+        for worker, records in worker_progress.items():
+            st.write(f"#### {worker}")
+            if records:
+                df = pd.DataFrame(records)
+                st.dataframe(df)
+            else:
+                st.warning("No data available.")
+
+        st.markdown("---")
+        st.write("### 📊 Section Progress")
+        for section, records in section_progress.items():
+            st.write(f"#### {section}")
+            if records:
+                df = pd.DataFrame(records)
+                st.dataframe(df)
+            else:
+                st.warning("No data available.")
+                
+    # --- Map Page ---
+    elif page == "Map":
+        st.title("🗺️ Tea Estate Map")
+        st.markdown("---")
+        # Load all info from gsheet for map popups
+        section_info = read_info_from_gsheet()
+        with open("map.txt", "r") as f:
+            svg_map = f.read()
+        # Inject section_info as a JS variable for the SVG to use
+        html_code = f'''
+        <script>
+        window.SECTION_INFO = {json.dumps(section_info)};
+        </script>
+        <div id="svg-container" style="background:white; overflow:auto; width:100%; height:1200px; touch-action:none;">
+            <div id="zoom-wrapper" style="transform: scale(1); transform-origin: 0 0; cursor: grab;">
+            {svg_map}
+            </div>
+        </div>
+        <script>
+        (function() {{
+            var zoomWrapper = document.getElementById('zoom-wrapper');
+            var container = document.getElementById('svg-container');
+            var scale = 1;
+            var minScale = 0.2;
+            var maxScale = 5;
+            var pos = {{ x: 0, y: 0 }};
+            var isDragging = false;
+            var dragStart = {{ x: 0, y: 0 }};
+            var lastPos = {{ x: 0, y: 0 }};
+
+            // Zoom with ctrl+scroll
+            container.addEventListener('wheel', function(e) {{
+            if (e.ctrlKey) {{
+                e.preventDefault();
+                var prevScale = scale;
+                if (e.deltaY < 0) {{
+                scale = Math.min(maxScale, scale + 0.1);
+                }} else {{
+                scale = Math.max(minScale, scale - 0.1);
+                }}
+                // Adjust position to zoom to mouse pointer
+                var rect = zoomWrapper.getBoundingClientRect();
+                var mouseX = e.clientX - rect.left;
+                var mouseY = e.clientY - rect.top;
+                pos.x = (pos.x - mouseX) * (scale/prevScale) + mouseX;
+                pos.y = (pos.y - mouseY) * (scale/prevScale) + mouseY;
+                updateTransform();
+            }}
+            }}, {{ passive: false }});
+
+            // Drag to move
+            zoomWrapper.addEventListener('mousedown', function(e) {{
+            isDragging = true;
+            dragStart.x = e.clientX;
+            dragStart.y = e.clientY;
+            lastPos.x = pos.x;
+            lastPos.y = pos.y;
+            zoomWrapper.style.cursor = "grabbing";
+            }});
+            window.addEventListener('mousemove', function(e) {{
+            if (isDragging) {{
+                pos.x = lastPos.x + (e.clientX - dragStart.x);
+                pos.y = lastPos.y + (e.clientY - dragStart.y);
+                updateTransform();
+            }}
+            }});
+            window.addEventListener('mouseup', function(e) {{
+            isDragging = false;
+            zoomWrapper.style.cursor = "grab";
+            }});
+
+            // Touch support for mobile
+            var lastTouch = null;
+            zoomWrapper.addEventListener('touchstart', function(e) {{
+            if (e.touches.length === 1) {{
+                isDragging = true;
+                dragStart.x = e.touches[0].clientX;
+                dragStart.y = e.touches[0].clientY;
+                lastPos.x = pos.x;
+                lastPos.y = pos.y;
+            }} else if (e.touches.length === 2) {{
+                lastTouch = {{
+                x1: e.touches[0].clientX,
+                y1: e.touches[0].clientY,
+                x2: e.touches[1].clientX,
+                y2: e.touches[1].clientY,
+                scale: scale
+                }};
+            }}
+            }});
+            zoomWrapper.addEventListener('touchmove', function(e) {{
+            if (e.touches.length === 1 && isDragging) {{
+                pos.x = lastPos.x + (e.touches[0].clientX - dragStart.x);
+                pos.y = lastPos.y + (e.touches[0].clientY - dragStart.y);
+                updateTransform();
+            }} else if (e.touches.length === 2 && lastTouch) {{
+                var dx1 = lastTouch.x2 - lastTouch.x1;
+                var dy1 = lastTouch.y2 - lastTouch.y1;
+                var dx2 = e.touches[1].clientX - e.touches[0].clientX;
+                var dy2 = e.touches[1].clientY - e.touches[0].clientY;
+                var dist1 = Math.sqrt(dx1*dx1 + dy1*dy1);
+                var dist2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+                var scaleChange = dist2 / dist1;
+                scale = Math.max(minScale, Math.min(maxScale, lastTouch.scale * scaleChange));
+                updateTransform();
+            }}
+            e.preventDefault();
+            }}, {{ passive: false }});
+            window.addEventListener('touchend', function(e) {{
+            isDragging = false;
+            lastTouch = null;
+            }});
+
+            function updateTransform() {{
+            zoomWrapper.style.transform = 'translate(' + pos.x + 'px, ' + pos.y + 'px) scale(' + scale + ')';
+            }}
+        }})();
+        </script>
+        '''
+        st.components.v1.html(html_code, height=1500, scrolling=True)
 

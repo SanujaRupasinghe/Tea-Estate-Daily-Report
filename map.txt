@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1214.7 1198.33">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4, .cls-5, .cls-7 {
+        stroke: #000;
+      }
+
+      .cls-4, .cls-10 {
+        fill: #7f0003;
+      }
+
+      .cls-5, .cls-6, .cls-8 {
+        fill: none;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        fill: #159fff;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        font-size: 12px;
+      }
+
+      .cls-14, .cls-15 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-16 {
+        letter-spacing: 0em;
+      }
+
+      .cls-17 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        stroke: #159efe;
+      }
+
+      .cls-18 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        fill: #606060;
+      }
+
+      .cls-19 {
+        letter-spacing: 0em;
+      }
+
+      .cls-20 {
+        letter-spacing: 0em;
+      }
+
+      .cls-21 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        stroke: #159fff;
+      }
+
+      .cls-9 {
+        fill: #ff151b;
+        stroke: #ff151b;
+      }
+
+      .cls-22 {
+        letter-spacing: 0em;
+      }
+
+      .cls-15 {
+        font-size: 16.55px;
+      }
+    </style>
+  </defs>
+  <g id="_1A" data-name="1A">
+    <path id="_1A-1" data-name="1A-1" class="cls-5" d="m611,964s7.5,18.5,10,26,12.78,22.5,14.64,26.5,7.15,13.98,7.15,13.98l-4.6,7.02-39.69-21-18-5.8-11.76-9.2s17.76-9,24.26-15.5,18-22,18-22Z"/>
+    <polygon id="_1A-2" data-name="1A-2" class="cls-5" points="540 1035.21 568.74 1001.5 580.5 1010.7 598.5 1016.5 638.19 1037.5 635.5 1044.5 611.5 1057.5 595.5 1069.5 565.5 1055.5 540 1035.21"/>
+    <polygon id="_1A-3" data-name="1A-3" class="cls-5" points="505.94 1106.5 511.5 1087.5 524.5 1058.5 540 1035.21 565.5 1055.5 595.5 1069.5 585.5 1075.55 561.5 1082.5 540 1091.38 516.15 1100.67 505.94 1106.5"/>
+    <text class="cls-14" transform="translate(595.68 1003.55)"><tspan x="0" y="0">1</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-1</tspan></text>
+    <text class="cls-14" transform="translate(535.33 1073.16)"><tspan x="0" y="0">1</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-3</tspan></text>
+    <text class="cls-14" transform="translate(568.33 1047.16)"><tspan x="0" y="0">1</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-2</tspan></text>
+  </g>
+  <g id="_1B" data-name="1B">
+    <polygon id="_1B-3" data-name="1B-3" class="cls-5" points="453.5 885.5 488.5 876.5 587.5 853.5 578.5 881.5 587.5 903.81 448.5 923.5 453.5 885.5"/>
+    <polygon id="_1B-1" data-name="1B-1" class="cls-5" points="440.5 980.5 448.5 923.5 587.5 903.81 605.77 949.68 584.5 971.5 571.5 968.5 524.5 973.5 466.5 974.5 440.5 980.5"/>
+    <polygon id="_1B-4" data-name="1B-4" class="cls-5" points="435.5 997.5 440.5 980.5 466.5 974.5 481.17 974.5 477.34 995.46 435.5 997.5"/>
+    <polygon id="_1B-2" data-name="1B-2" class="cls-5" points="563.5 991.5 477.34 995.46 481.17 974.5 524.5 973.5 571.5 968.5 584.5 971.5 563.5 991.5"/>
+    <text class="cls-14" transform="translate(484.49 896.83)"><tspan x="0" y="0">1</tspan><tspan class="cls-3" x="6.16" y="0">B</tspan><tspan class="cls-22" x="12.72" y="0">-3</tspan></text>
+    <text class="cls-14" transform="translate(481.94 947.64)"><tspan x="0" y="0">1</tspan><tspan class="cls-3" x="6.16" y="0">B</tspan><tspan class="cls-22" x="12.72" y="0">-1</tspan></text>
+    <text class="cls-14" transform="translate(444.89 991.19)"><tspan x="0" y="0">1</tspan><tspan class="cls-3" x="6.16" y="0">B</tspan><tspan class="cls-22" x="12.72" y="0">-4</tspan></text>
+    <text class="cls-14" transform="translate(499.28 987.6)"><tspan x="0" y="0">1</tspan><tspan class="cls-3" x="6.16" y="0">B</tspan><tspan class="cls-22" x="12.72" y="0">-2</tspan></text>
+  </g>
+  <g id="_1C" data-name="1C">
+    <polygon id="_1C-1" data-name="1C-1" class="cls-5" points="368.06 1001.5 384.15 968.5 398.5 929.5 400.91 919.55 415.5 880.5 421.5 873.5 429.5 865.43 437.5 858.5 444.5 853.5 427.55 974.5 429.5 976.61 424.74 987.6 415.5 1012.5 368.06 1001.5"/>
+    <polygon id="_1C-2" data-name="1C-2" class="cls-5" points="288.91 980.5 358.11 997.5 404.5 873.5 397.5 848.5 387.71 855.72 371.5 877.5 364.5 901.5 356.5 917.5 354.5 921.5 342.5 934.5 325.5 951.5 321.5 955.5 288.91 980.5"/>
+    <text class="cls-14" transform="translate(401.26 937.68)"><tspan x="0" y="0">1C-1</tspan></text>
+    <text class="cls-14" transform="translate(338.96 947.64)"><tspan x="0" y="0">1C-2</tspan></text>
+    <polygon id="_1C-3" data-name="1C-3" class="cls-5" points="272.57 1012.5 321.6 1012.5 321.6 1035.21 270.53 1030.48 272.57 1012.5"/>
+    <text class="cls-14" transform="translate(283.3 1025.51)"><tspan x="0" y="0">1C-3</tspan></text>
+  </g>
+  <g id="_1D" data-name="1D">
+    <polygon id="_1D-2" data-name="1D" class="cls-5" points="459.5 845 598 757 607 755 618 759 623.25 766.87 623.25 774.79 589.5 849.5 453.5 882.5 459.5 845"/>
+    <text class="cls-14" transform="translate(514.87 835.81)"><tspan x="0" y="0">1D</tspan></text>
+  </g>
+  <g id="_2A" data-name="2A">
+    <text class="cls-14" transform="translate(660.08 738.99) rotate(-29.87)"><tspan x="0" y="0">2</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-2</tspan></text>
+    <polygon id="_2A-2" data-name="2A-2" class="cls-5" points="652 746 645.5 736.49 684 712 695 724 652 746"/>
+    <polygon id="_2A-1" data-name="2A-1" class="cls-5" points="398.7 847 406.28 872.57 422.45 856.49 426.28 853.5 446.5 839.5 448.5 822.28 461 823.5 461 830.96 598.5 744.5 601.5 742.5 615.5 740.5 626.5 731.5 629.5 727.5 623.5 710.96 607.5 693.5 588.5 686.5 572.5 702.5 570.5 707.5 444.89 814.28 426.5 830.5 417.5 824.5 398.7 847"/>
+    <text class="cls-14" transform="translate(509.38 778.47)"><tspan x="0" y="0">2</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-1</tspan></text>
+  </g>
+  <g id="_2B" data-name="2B">
+    <polygon id="_2B-2" data-name="2B" class="cls-5" points="420 823 426.79 827.66 570 706 570 694.96 566 689 548.5 705.5 540.5 715.5 524.5 726.5 519.5 731.5 513.5 734.5 508.5 736.5 503.5 742.5 497.5 746.5 473.5 767.5 462.5 777.5 432.5 807.5 420 823"/>
+    <text class="cls-14" transform="translate(487.42 770.74) rotate(-43.69)"><tspan x="0" y="0">2B</tspan></text>
+  </g>
+  <g id="_2C" data-name="2C">
+    <polygon id="_2C-1" data-name="2C-1" class="cls-5" points="567.5 687.5 571.5 693.5 571.5 699.89 587.5 683.5 606.5 690.5 623.25 708.74 625.5 707.5 616.5 690.5 617.5 681.5 620.5 669.5 625.5 657.85 636.5 630.5 638.5 621.5 635.64 621.5 620.5 607.5 610.5 623.5 604.32 637.5 598.5 654.5 589.5 665.5 567.5 687.5"/>
+    <polygon id="_2C-1-2" data-name="2C-1" class="cls-5" points="645.5 632.83 648.5 616.5 649.5 603.5 651.5 600.5 655.04 600.5 684.32 600.5 731.5 597.5 739.5 595.5 746.5 611.5 759.5 623.5 747.5 626.5 732.83 632.83 720.5 638.96 713.5 640.5 691.5 641.5 686.5 639.5 679.5 638.5 669.5 634.5 645.5 632.83"/>
+    <polygon id="_2C-2" data-name="2C-2" class="cls-5" points="740.5 594.5 747.5 610.5 761.5 623.5 789.5 614.5 794.5 610.5 796.5 610.5 810.5 569.5 835.5 543.5 819.5 545.5 805.5 549.5 796.5 551.5 784.5 553.5 777.5 554.5 769.68 555.57 764.5 559.3 759.5 564.91 749.64 583.5 740.5 594.5"/>
+    <polygon id="_2C-3" data-name="2C-3" class="cls-5" points="645.5 579.38 662.5 588.5 670.7 590.55 718.36 590.55 733.34 590 743.72 579.38 763.5 547.5 791.5 542.5 828.49 537.38 837 536.2 800.5 525.5 778.5 522.5 776.23 522.5 706.45 477 695.38 472.35 645.5 579.38"/>
+    <text class="cls-14" transform="translate(607.62 673.43) rotate(-65.24)"><tspan x="0" y="0">2C-1</tspan></text>
+    <text class="cls-14" transform="translate(688.4 625.47)"><tspan x="0" y="0">2C-1</tspan></text>
+    <text class="cls-14" transform="translate(764.6 598.87)"><tspan x="0" y="0">2C-2</tspan></text>
+    <text class="cls-14" transform="translate(681.6 547.04)"><tspan x="0" y="0">2C-3</tspan></text>
+  </g>
+  <g id="_3A" data-name="3A">
+    <polygon id="_3A-1" data-name="3A-1" class="cls-5" points="758.5 500.83 780 515 802 519 807.47 519 844.5 530.5 862.02 500.83 851.5 494.79 840.5 492.5 814.5 481.5 806.5 478.5 794.45 477 775.5 467.5 758.5 500.83"/>
+    <text class="cls-14" transform="translate(789.85 500.4)"><tspan x="0" y="0">3</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-1</tspan></text>
+    <polygon id="_3A-2" data-name="3A-2" class="cls-5" points="902 385 869 367 845.49 354.79 819.5 345.5 805.5 341.5 796.5 339.5 767.5 327.21 741.5 314.5 711.5 297.5 702.5 292.5 851.5 177.34 903.5 236.5 913.5 239.5 932.5 261.5 932.5 266.19 911.5 254.5 882.5 355.5 901.5 369.5 902 385"/>
+    <text class="cls-14" transform="translate(775.81 287.64)"><tspan x="0" y="0">3</tspan><tspan class="cls-20" x="6.16" y="0">A</tspan><tspan x="13.46" y="0">-2</tspan></text>
+  </g>
+  <g id="_3B" data-name="3B">
+    <polygon id="_3B-2" data-name="3B-2" class="cls-5" points="845.5 231.5 868.5 251.5 851 271.3 825.5 248.5 845.5 231.5"/>
+    <polyline id="_3B-2-2" data-name="3B-2" class="cls-5" points="700.5 290.5 850.5 175.5 833.5 162.5 795.5 197.5 794.5 198.5 744.5 212.5 747.5 218.5 741.5 234.5 740.5 236.5 715.5 239.5 696.5 247.5 680.5 261.5 672.06 276.12 699.81 290.5"/>
+    <polygon id="_3B-2-3" data-name="3B-2" class="cls-5" points="904.5 367.5 917.5 334.5 926.5 305.5 932.5 267.89 912.5 256.5 884.5 354.5 903.5 368.5 904.5 367.5"/>
+    <text class="cls-14" transform="translate(703.6 260.64)"><tspan x="0" y="0">3</tspan><tspan class="cls-16" x="6.16" y="0">B</tspan><tspan x="12.72" y="0">-2</tspan></text>
+    <text class="cls-14" transform="translate(836.04 246.93) rotate(42.68) scale(1.04 1)"><tspan x="0" y="0">3</tspan><tspan class="cls-21" x="6.16" y="0">B</tspan><tspan x="12.72" y="0">-2</tspan></text>
+    <text class="cls-14" transform="translate(912.36 325.21) rotate(-70.43)"><tspan x="0" y="0">3</tspan><tspan class="cls-16" x="6.16" y="0">B</tspan><tspan x="12.72" y="0">-2</tspan></text>
+    <polygon id="_3B-1" data-name="3B-1" class="cls-5" points="864 495 771 459 808 435 853 389 898 414 891 429 877 470 873 480 864 495"/>
+    <text class="cls-14" transform="translate(832.34 447.34)"><tspan x="0" y="0">3</tspan><tspan class="cls-16" x="6.16" y="0">B</tspan><tspan x="12.72" y="0">-1</tspan></text>
+    <polygon id="_3B-3" data-name="3B-3" class="cls-5" points="595 380 705 412 686 459 655 456 583.5 446.5 544.5 423.5 545.5 417.5 549.5 409.5 552.5 406.5 554.5 405.5 577.5 397.5 595 380"/>
+    <text class="cls-14" transform="translate(594.96 419.38)"><tspan x="0" y="0">3</tspan><tspan class="cls-16" x="6.16" y="0">B</tspan><tspan x="12.72" y="0">-3</tspan></text>
+  </g>
+  <g id="_4" data-name="4">
+    <polygon id="_4-2" data-name="4" class="cls-5" points="416.06 477 470.5 502.87 454.5 536.2 416.06 522.02 410 531.98 390.5 522.5 416.06 477"/>
+    <text class="cls-14" transform="translate(420.15 511.81)"><tspan x="0" y="0">4</tspan></text>
+  </g>
+  <g id="ELA_1">
+    <polygon id="ela1" class="cls-12" points="934.5 261.5 938.5 257.5 927.43 323.27 907.5 372.5 909.5 401.5 896.5 430.5 883.5 470.5 856.5 524.57 847.5 537.5 817.5 571.5 805.5 610.5 798.5 626.5 798.5 634.87 786.5 663.5 764.5 696.5 758.5 694.5 767.5 682.5 777.5 664.5 790.5 626.5 805.5 593.5 812.5 569.5 833.5 548.4 847.5 529.5 874.5 480.5 885.5 452.5 892.5 429.5 905.5 401.5 903.5 372.5 913.5 350.5 922.5 323.5 927.5 306.5 934.5 261.5"/>
+  </g>
+  <g id="ELA_2">
+    <polyline class="cls-12" points="133.5 1178.5 199.5 1134.5 217.5 1137.5 308.5 1137.5 345.5 1145.5 458.5 1132.5 510.5 1107.5 596.5 1074.5 617.5 1057.5 638.5 1047.5 659.5 1001.5 678.5 1003.5 649.5 1065.5 608.5 1104.5 496.5 1153.5 316.5 1173.5 145.77 1197.83 96.91 1191.5 109.5 1183.5"/>
+    <polyline class="cls-12" points="133.5 1178.5 199.5 1134.5 217.5 1137.5 308.5 1137.5 345.5 1145.5 458.5 1132.5 510.5 1107.5 596.5 1074.5 617.5 1057.5 638.5 1047.5 659.5 1001.5 678.5 1003.5 649.5 1065.5 608.5 1104.5 496.5 1153.5 316.5 1173.5 145.77 1197.83 96.91 1191.5 109.5 1183.5"/>
+  </g>
+  <g id="Road_1">
+    <path id="Our" class="cls-7" d="m841.66,537.38l-3.59,4.85-18.57,2.27s-14,4-19,5-18,3-18,3c0,0-12,.4-15,2.2s-9,8.83-9,8.83l-9,16.97s-6,10-10,13-14,3-14,3l-40.33,2.42s-26.59.42-30.13,0-5.54,1.58-6.54,5.58-2,20-4,26-18,50-18,50v7.99s14,29.01,13,33.01l-2,8c-1,4-8,10.23-11,13.12s-18,6.88-18,6.88c0,0-9,1-11,4s-45,32-45,32l-68,42s-45,26.98-47.5,28.99-13.5,13.01-18.5,17.01-10,19-10,19l-10,27-2,8c-1,4-14,36-14,40-2,5-15.97,34-15.97,34h-7.15l24.12-66s20-56,23-60,11.45-13.02,17.72-19.01,87.28-53.99,87.28-53.99c2.34,1.04,88.87-57.79,89.02-57.84,6.21-2.25,13.64-1.53,15.98-3.16,8.52-5.96,13.73-11,12-10,0,0,4-4.66,4-10.33s-14-28.67-14-32.67.66-10,2.33-15,16.67-40,17.67-44,2.43-13.6,5-28c0,0,2-6,6-8s49-1,49-1c0,0,29,1,35-1s14-15,17-20,11-20.85,14-22.93,77.16-11.19,77.16-11.19Z"/>
+  </g>
+  <g id="Road_2">
+    <path id="existing" class="cls-7" d="m842.54,536.2l-25.04-6.7s-12-4-16-5-18-2-24-4-61.64-39-67.82-43.5-18.18-7.5-21.18-8.5-21-2.35-29-4.18c-6.58-1.51-6.94-2.76-16.97-3.79s-50.52-.84-59.03-5.03c-7.38-3.63-44-23-47-26s0-17,0-17l12-4s-7,11-6,15,34,22,39,24,82,11,82,11c0,0,19.04,1.04,26.02,3.52s20.98,8.48,24.98,12.48,57,38,63,41,22,5,28,5,39.99,11.72,39.99,11.72l-2.95,3.98Z"/>
+    <path id="top" class="cls-7" d="m673.5,441.5l4.74,18.99h4.89l-6.64-18.99s-2.99-7-3.99-12-1-9.49,0-16.24,8-18.59,9.5-20.17,5.5-1.59,5.5-1.59c0,0,23,3,38,3s33-8.56,33-8.56c0,0,7-5.22,9-15.83s-1-27.61-1-27.61c-.81-6.51-4.61-12.54-12-18l-41-23-43.14-25.38-2.68,4.88,59.82,34.5c10.31,4.79,20.3,11.2,30,19,4.63,6.28,6.36,13.59,5,22,1.38,7.87.05,15.72-4,23.56-5.41,3.53-10.75,6.05-16,7.44,0,0-15.82,4.09-24.91,3.54s-24.09-3.54-30.09-4.54-12,9-15,14-3.65,9-4.82,13.5,5.82,27.5,5.82,27.5Z"/>
+  </g>
+  <g id="Rock_Edge_3">
+    <polygon id="Edge3" class="cls-10" points="204.5 673.5 221.5 655.5 228.5 642.5 273.5 608.5 339.5 568.5 339.5 548.74 364.5 526.5 369.5 493.6 384.5 478.5 420.5 462.5 424.22 453.56 312.5 467.5 294.5 480.5 253.5 533.5 253.5 556.23 265.5 568.5 198.28 598.92 195.5 619.5 204.5 673.5"/>
+  </g>
+  <g id="Rock_Edge_4">
+    <polyline id="Edge4" class="cls-10" points="312.5 467.5 424.22 453.56 425.5 450.5 467.5 443.5 495.5 429.5 501.5 432.5 507.5 427.5 470.5 360.5"/>
+  </g>
+  <g id="Boundry">
+    <polyline class="cls-5" points="678.5 1003.5 649.5 1065.5 608.5 1104.5 496.5 1153.5 316.5 1173.5 145.77 1197.83"/>
+    <polyline class="cls-5" points="646.27 1030.48 621.5 981.5 580.5 881.5 590.5 851.5 632.5 758.45 703.5 721.5 767.5 682.5 758.5 694.5"/>
+    <polyline class="cls-5" points="204.5 673.5 221.5 655.5 228.5 642.5 273.5 608.5 339.5 568.5 339.5 548.74 364.5 526.5 369.5 493.6 384.5 478.5 420.5 462.5 425.5 450.5 467.5 443.5 495.5 429.5 501.5 432.5 507.5 427.5 470.5 360.5 312.5 467.5 294.5 480.5 253.5 533.5 253.5 556.23 265.5 568.5 198.28 598.92 195.5 619.5 198.5 639.5 204.5 673.5 191.5 696.5 184.5 712.5 171.5 731.5 155.5 747.5 142.5 770.5 136.5 775.5 132.5 801.5 141.5 803.5 139.5 828.5 117.5 863.5 111.5 929.5 117.5 958.5 114.5 989.5 98.5 1035.5 79.5 1191.5 96.91 1191.5 109.5 1183.5 133.5 1178.5 199.5 1134.5 217.5 1137.5 308.5 1137.5 345.5 1145.5 458.5 1132.5 510.5 1107.5 596.5 1074.5 617.5 1057.5 638.5 1047.5 659.5 1001.5"/>
+    <line class="cls-5" x1="312.5" y1="467.5" x2="424.22" y2="453.56"/>
+    <line class="cls-5" x1="454.5" y1="324.5" x2="470.5" y2="360.5"/>
+    <polyline class="cls-5" points="507.5 427.5 517.5 418.5 536.5 412.5 548.5 408.5 552.5 404.5 576.5 396.5 605.5 366.5 657.5 299.5 679.5 259.5 695.5 246.5 715.5 238.5 739.5 234.5 745.5 219.5 742.5 211.5 792.5 197.5 833.5 160.5 856.5 134.5"/>
+    <polyline class="cls-5" points="833.5 160.5 849.5 172.5 905.5 235.5 914.5 238.5 934.5 261.5 927.5 306.5 922.5 323.5 913.5 350.5 903.5 372.5 905.5 401.5 899.5 415.5 892.5 429.5 885.5 452.5 874.5 480.5 847.5 529.5 833.5 548.4 812.5 569.5 805.5 593.5 796.5 614.5 790.5 626.5 777.5 664.5 767.5 682.5"/>
+    <polyline class="cls-5" points="938.5 257.5 930.5 305.5 927.21 324.5 907.5 372.5 909.5 401.5 896.5 430.5 883.5 470.5 869.5 500.5 856.5 524.57 847.5 537.5 817.5 571.5 805.5 610.5 798.5 626.5 798.5 634.87 786.5 663.5 764.5 696.5"/>
+  </g>
+  <g id="WaterStream">
+    <path id="below" class="cls-6" d="m432.5,976.5s-6,10-7,14-9,24-9,24c0,0-2,1-3,7s2,22.96,0,26.48c-2,3.52-9,23.52-9,23.52,0,0-4,10-7,13s-14,8-20,11-21,3-25,4-23.72,5-28.86,7-20.14,4-28.14,4-26,3-34,3-13,2-16,3-16,4-16,4l-19,5s-18,4-22,5-11,7-15,8-15,5-19,6-5,4-9,5-4.49-1-8.24,0-8.76,6-11.76,7-10,3-14,4-6-2-10.5,0-9.5,4-12.5,7-6,3-6,3"/>
+    <path id="above" class="cls-8" d="m91.5,1106.5l8-8c4-4,17-6,12-5s22-5,27-7,9-5,13-7,14-3,16-4,5-4,9-6,11-2,14-4,7-6,7-6l10-9s8-4,9-5,4-7,7-10,9-5,11-8,8-11,8-11c0,0,13-9,16-13s12-11,16-14,27-20,27-20c0,0,17-14,20-16s15-15,18-18,12-12,14-15,8-18,9-19,6-22,8-25,12-18,15-21,14-10,16-13,10-14,10-14c0,0,17-17,18-19s22-23,25-26,20-19,20-19c0,0,22-19,25-21,4.98-2.05,4-8,12-10s9-5,11-7,16-10,17.5-12.48,8.5-10.52,11.5-13.52,25-23,25-23c0,0,16-17,19-21s10-27,13-32,24-37,24-37"/>
+  </g>
+  <g id="Buildings">
+    <polygon id="Main2" class="cls-9" points="620.5 637.5 632.5 641.26 626.5 655.55 614.5 652.5 620.5 637.5"/>
+    <polygon id="Main1" class="cls-9" points="648.5 636.5 664.23 636.5 678.5 641.5 675.3 655.55 645.5 651.5 648.5 636.5"/>
+    <polygon id="Old" class="cls-9" points="579.5 1016.5 598.5 1024.5 591.5 1037.5 572.5 1029.5 579.5 1016.5"/>
+  </g>
+  <g id="Rock_Ladders">
+    <polygon id="Ladder3" class="cls-4" points="628 586 638 590 689 482 720.5 410.5 708.15 408.5 686.7 460.49 667.54 499.25 628 586"/>
+    <polygon id="Ladder2" class="cls-4" points="450.5 823.5 429.5 974.5 438.19 976.5 459.5 825.5 450.5 823.5"/>
+    <polygon id="Ladder1" class="cls-4" points="565 994 605.77 953.72 610 960 570.79 999.5 565 994"/>
+  </g>
+  <g id="Texts">
+    <text class="cls-15" transform="translate(395.9 445.47) rotate(-29.87) scale(.87 1)"><tspan class="cls-19" x="0" y="0">R</tspan><tspan x="8.97" y="0">ock </tspan><tspan class="cls-13" x="36.73" y="0">E</tspan><tspan x="44.81" y="0">dge 4</tspan></text>
+    <text class="cls-15" transform="translate(292.39 555.57) rotate(-46.09) scale(.87 1)"><tspan class="cls-19" x="0" y="0">R</tspan><tspan x="8.97" y="0">ock </tspan><tspan class="cls-13" x="36.73" y="0">E</tspan><tspan x="44.81" y="0">dge 3</tspan></text>
+    <text class="cls-15" transform="translate(623.25 333.19) rotate(-54.03) scale(.87 1)"><tspan class="cls-19" x="0" y="0">R</tspan><tspan x="8.97" y="0">ock </tspan><tspan class="cls-13" x="36.73" y="0">E</tspan><tspan x="44.81" y="0">dge</tspan></text>
+    <text class="cls-15" transform="translate(400.91 1179.51) rotate(-7.83) scale(.87 1)"><tspan class="cls-1" x="0" y="0">W</tspan><tspan class="cls-18" x="13.45" y="0">a</tspan><tspan class="cls-17" x="21.36" y="0">t</tspan><tspan x="26.74" y="0">er </tspan><tspan class="cls-11" x="43.95" y="0">S</tspan><tspan x="52.05" y="0">t</tspan><tspan class="cls-2" x="57.53" y="0">r</tspan><tspan x="62.78" y="0">eam</tspan></text>
+    <text class="cls-15" transform="translate(831.92 590.55) rotate(-54.03) scale(.87 1)"><tspan class="cls-1" x="0" y="0">W</tspan><tspan class="cls-18" x="13.45" y="0">a</tspan><tspan class="cls-17" x="21.36" y="0">t</tspan><tspan x="26.74" y="0">er </tspan><tspan class="cls-11" x="43.95" y="0">S</tspan><tspan x="52.05" y="0">t</tspan><tspan class="cls-2" x="57.53" y="0">r</tspan><tspan x="62.78" y="0">eam</tspan></text>
+  </g>
+  <g id="svg-popups">
+    <rect id="popup-bg" x="0" y="0" width="200" height="60" rx="8" fill="#fffbe7" stroke="#333" stroke-width="1.5" style="display:none;pointer-events:none;"/>
+    <text id="popup-text" x="10" y="30" font-size="16" fill="#333" style="display:none;pointer-events:none;">Info</text>
+  </g>
+  <script type="application/ecmascript"><![CDATA[
+    (function() {
+      // Helper: get all elements with an ID (except <g> and <svg> itself)
+      function getInteractiveElements() {
+        var svg = document.documentElement;
+        var all = svg.querySelectorAll('[id]');
+        var arr = [];
+        for (var i=0; i<all.length; ++i) {
+          var el = all[i];
+          if (el.tagName !== 'g' && el.tagName !== 'svg' && el.id !== 'popup-bg' && el.id !== 'popup-text') {
+            arr.push(el);
+          }
+        }
+        return arr;
+      }
+      var popupBg = document.getElementById('popup-bg');
+      var popupText = document.getElementById('popup-text');
+      var currentTarget = null;
+      function showPopup(evt, text) {
+        var svg = document.documentElement;
+        var pt = svg.createSVGPoint();
+        pt.x = evt.clientX;
+        pt.y = evt.clientY;
+        var cursorpt = pt.matrixTransform(svg.getScreenCTM().inverse());
+        popupBg.setAttribute('x', cursorpt.x + 10);
+        popupBg.setAttribute('y', cursorpt.y - 10);
+        popupText.setAttribute('x', cursorpt.x + 20);
+        popupText.setAttribute('y', cursorpt.y + 20);
+        popupText.textContent = text;
+        popupBg.style.display = 'block';
+        popupText.style.display = 'block';
+      }
+      function hidePopup() {
+        popupBg.style.display = 'none';
+        popupText.style.display = 'none';
+      }
+      function clickPopup(evt, id) {
+        // You can customize this to show more info or trigger actions
+        showPopup(evt, 'Clicked: ' + id);
+      }
+      var elements = getInteractiveElements();
+      elements.forEach(function(el) {
+        el.style.cursor = 'pointer';
+        el.addEventListener('mouseenter', function(evt) {
+          currentTarget = el;
+          showPopup(evt, 'ID: ' + el.id);
+        });
+        el.addEventListener('mousemove', function(evt) {
+          if (currentTarget === el) {
+            showPopup(evt, 'ID: ' + el.id);
+          }
+        });
+        el.addEventListener('mouseleave', function(evt) {
+          currentTarget = null;
+          hidePopup();
+        });
+        el.addEventListener('click', function(evt) {
+          clickPopup(evt, el.id);
+        });
+      });
+      // Hide popup if clicking anywhere else
+      document.documentElement.addEventListener('click', function(evt) {
+        if (!evt.target.hasAttribute('id')) hidePopup();
+      });
+    })();
+  ]]></script>
+</svg>
+<script type="text/ecmascript">
+(function() {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+  ready(function() {
+    const svg = document.querySelector('svg');
+    if (!svg) return;
+    // Tooltip
+    let tooltip = document.createElement('div');
+    tooltip.style.position = 'fixed';
+    tooltip.style.pointerEvents = 'none';
+    tooltip.style.background = 'rgba(0,0,0,0.8)';
+    tooltip.style.color = '#fff';
+    tooltip.style.padding = '2px 8px';
+    tooltip.style.borderRadius = '4px';
+    tooltip.style.fontSize = '13px';
+    tooltip.style.zIndex = 10000;
+    tooltip.style.display = 'none';
+    document.body.appendChild(tooltip);
+    // Popup
+    let popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.background = '#fff';
+    popup.style.color = '#222';
+    popup.style.padding = '10px 18px 10px 10px';
+    popup.style.border = '2px solid #159fff';
+    popup.style.borderRadius = '8px';
+    popup.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
+    popup.style.fontSize = '15px';
+    popup.style.zIndex = 10001;
+    popup.style.display = 'none';
+    popup.innerHTML = '<span id="popup-content"></span> <button id="popup-close" style="margin-left:10px;cursor:pointer;">✕</button>';
+    document.body.appendChild(popup);
+    document.getElementById('popup-close').onclick = function() {
+      popup.style.display = 'none';
+    };
+    // Remove fetch for map_details.json, use window.SECTION_INFO
+    let details = window.SECTION_INFO || {};
+    // Attach events to all SVG elements with an id (except <svg> itself)
+    const svgElements = svg.querySelectorAll('[id]:not(svg)');
+    svgElements.forEach(function(el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('mouseenter', function(e) {
+        tooltip.textContent = el.id;
+        tooltip.style.display = 'block';
+      });
+      el.addEventListener('mousemove', function(e) {
+        tooltip.style.left = (e.clientX + 12) + 'px';
+        tooltip.style.top = (e.clientY + 8) + 'px';
+      });
+      el.addEventListener('mouseleave', function(e) {
+        tooltip.style.display = 'none';
+      });
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        let html = '';
+        let d = details && details[el.id];
+        if (d && Array.isArray(d) && d.length > 0) {
+          html += '<b>ID:</b> ' + el.id + '<br>';
+          html += '<ul>' + d.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+        } else {
+          html = '<b>ID:</b> ' + el.id + '<br><i>No details found.</i>';
+        }
+        document.getElementById('popup-content').innerHTML = html;
+        popup.style.left = (e.clientX + 10) + 'px';
+        popup.style.top = (e.clientY + 10) + 'px';
+        popup.style.display = 'block';
+        tooltip.style.display = 'none';
+      });
+    });
+    // Hide popup if clicking outside
+    document.addEventListener('click', function(e) {
+      if (!popup.contains(e.target)) {
+        popup.style.display = 'none';
+      }
+    });
+  });
+})();
+</script>
+<style>
+/* Tooltip and popup styles for SVG map */
+</style>
